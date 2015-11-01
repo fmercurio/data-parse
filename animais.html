@@ -1,0 +1,46 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+
+  <title>Animais</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
+</head>
+
+<body>
+  
+  <div id="main">
+    <h1>Vamos popular a tabela Animais dentro do Parse</h1>
+
+    <p>Este por enquanto é apenas um teste, portanto iremos rodar o script dentro do código.</p>
+    
+  <script type="text/javascript">
+    Parse.initialize("gAcKAjw8O3xW7i4VpxRws62uFS52iTEM0qbkCzD7", "sY78ABBTwGFSOqB74BL8IR9GlHoGhelOpEE2nxYF");
+    
+    var Animais = Parse.Object.extend("animais");
+    var animais = new Animais();
+    animais.set("nome", "Cachorro");
+    animais.set("tipo", "Mamifero");
+    animais.set("qtd", 3);
+      
+    animais.save(null, {
+        success: function(gameScore) {
+            // Execute any logic that should take place after the object is saved.
+            alert('New object created with objectId: ' + animais.id);
+        },
+        
+        error: function(gameScore, error) {
+            // Execute any logic that should take place if the save fails.
+            // error is a Parse.Error with an error code and message.
+            alert('Failed to create new object, with error code: ' + error.message);
+        }
+    });
+      
+  </script>
+</body>
+
+</html>
