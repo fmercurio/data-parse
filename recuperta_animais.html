@@ -1,0 +1,51 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+
+  <title>Lista dos Passaralhos</title>
+  <meta name="description" content="Lista de animais">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
+<script type="text/javascript" src="underscore-min.js" combo="false"></script>
+</head>
+
+<body>
+    
+    <h2>Classe Animais:</h2>
+    <ul id="animais-list"></ul>
+
+    <script type="text/javascript">
+        
+        $(function(){
+            //Inicializando o app do Parse.com
+            Parse.Initialize("gAcKAjw8O3xW7i4VpxRws62uFS52iTEM0qbkCzD7", "sY78ABBTwGFSOqB74BL8IR9GlHoGhelOpEE2nxYF");
+
+            // Recuperando os dados do Objeto animais
+    
+            var Animais = Parse.Object.extend("animais");
+            var AnimaisCollection = Parse.Collection.extend({
+                model: Animais
+            });
+            var animaisCollection = new AnimaisCollection();
+    
+            animaisCollection.fetch({
+        
+                success: function(collection) {
+                    
+                    collection.each(function(object) {
+                        $("#animais-list").append("<li>" + object.get("nome") + "</li>");
+                    });
+                },
+                error: function(collection, error) {
+                    alert(error);
+                }
+            })
+    
+        });
+    
+    </script>
+</body>
+</html>
